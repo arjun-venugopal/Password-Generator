@@ -1,112 +1,135 @@
-# Password Generator and Strength Checker
+Here is the **README.md** file tailored for the password generator and strength checker code you provided:
 
-This project is a Python-based tool that allows users to generate secure passwords and evaluate the strength of their passwords based on various criteria.
+---
+
+# Password Generator & Strength Checker
+
+A secure password generator that allows customizable password generation and strength evaluation. The application lets users configure password length, character sets (uppercase, lowercase, digits, symbols), and checks the strength of the generated or entered passwords.
+
+## Table of Contents
+- [Description](#description)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Architecture](#architecture)
+
+## Description
+
+This is a Python-based application that provides two key functionalities:
+1. **Password Generation**: Generate secure random passwords based on user-selected options.
+2. **Password Strength Checking**: Evaluate the strength of a password, classifying it as weak, moderate, or strong.
+
+The password generator ensures cryptographically secure randomness using the `secrets` module and checks password strength based on several criteria such as length, diversity of character types, and known weak patterns.
 
 ## Features
 
-1. **Password Generation**:
-   - Generate random passwords of customizable length.
-   - Optionally include uppercase letters, lowercase letters, numbers, and symbols.
+- **Customizable Password Generation**: Choose length, inclusion of uppercase letters, lowercase letters, digits, and special characters.
+- **Password Strength Evaluation**: Checks passwords against rules and rates them as "Weak", "Moderate", or "Strong".
+- **Secure Password Generation**: Uses Python’s `secrets` module to generate cryptographically secure passwords.
+- **User-Friendly CLI**: Interact with the application using a simple command-line interface.
 
-2. **Password Strength Evaluation**:
-   - Evaluate the strength of a given password.
-   - Provide feedback on whether the password is `Weak`, `Moderate`, or `Strong`.
+## Installation
 
-3. **Common Password Weakness Detection**:
-   - Detect patterns such as repeated characters, sequential characters, and known weak passwords.
-   - Avoid common weak words like `password` or `admin`.
+Follow the steps below to install and run the password generator and strength checker.
 
----
+### Steps
 
-## How to Use
+1. **Clone the repository**:
 
-### Requirements
-- Python 3.8 or later
-
-### Run the Tool
-
-1. Clone the repository or copy the script file to your local machine.
-2. Open a terminal and navigate to the directory containing the script.
-3. Run the following command:
    ```bash
-   python password_generator.py
+   git clone https://github.com/arjun-venugopal/Password-Generator.git
+   cd password-generator
    ```
 
-### Options
-When running the script, you will be presented with two options:
-1. **Generate a password**: The script will generate a random password based on pre-defined settings.
-2. **Evaluate a password**: The script will analyze and score a user-provided password.
+2. **Create a Virtual Environment** (Optional, but recommended):
 
----
+   ```bash
+   python3 -m venv venv
+   ```
 
-## Password Strength Criteria
+3. **Activate the Virtual Environment**:
+   - On macOS/Linux:
+     ```bash
+     source venv/bin/activate
+     ```
+   - On Windows:
+     ```bash
+     .\venv\Scripts\activate
+     ```
 
-The password's strength is evaluated based on the following:
 
-1. **Length**:
-   - Minimum of 8 characters for a base score.
-   - Additional points for passwords 12 characters or longer.
+## Usage
 
-2. **Character Diversity**:
-   - Presence of uppercase letters, lowercase letters, digits, and special symbols.
+Once installed, you can run the application by executing the following command:
 
-3. **Avoid Weak Patterns**:
-   - Detection of repeated characters (e.g., `aaa`).
-   - Avoidance of sequential characters (e.g., `1234` or `abcd`).
-   - Detection of known weak passwords or words (e.g., `password`, `admin`, `welcome`).
+```bash
+python run.py
+```
 
-The final strength is determined as follows:
-- **Weak**: Total score of 3 or less.
-- **Moderate**: Total score of 4 to 5.
-- **Strong**: Total score of 6 or higher.
+### Command-Line Interface
 
----
+The user will be presented with a menu to either:
+1. Generate a new secure password.
+2. Evaluate the strength of an existing password.
 
-## Example
-
-### Generating a Password
-
-```plaintext
-$ python password_generator.py
+Example output:
+```bash
 1. Generate a password
 2. Evaluate a password
 Select an option (1 or 2): 1
-Generated Password: q1W$8z@N&f
+```
+
+If "1" is selected, the application generates and displays a secure password. If "2" is selected, the user is prompted to input an existing password to evaluate its strength.
+
+### Example of Password Generation
+
+```bash
+1. Generate a password
+2. Evaluate a password
+Select an option (1 or 2): 1
+Generated Password: Gt7@Vm4b#
 Password Strength: Strong
 ```
 
-### Evaluating a Password
+### Example of Password Evaluation
 
-```plaintext
-$ python password_generator.py
+```bash
 1. Generate a password
 2. Evaluate a password
 Select an option (1 or 2): 2
-Enter your password to evaluate: MyPa$$w0rd123
+Enter your password to evaluate: p@ssW0rD
 Password Strength: Strong
 ```
 
----
+## Architecture
 
-## Future Enhancements
+The code is structured to follow **Clean Architecture**, separating different concerns into modular components:
 
-- Add a configuration file to customize password generation settings persistently.
-- Enhance the password strength evaluation with more sophisticated algorithms.
-- Include a database of weak passwords to improve detection.
-- Add a graphical user interface (GUI).
+### Core Layers:
+1. **Entities Layer**:
+   - Includes the `Password` class, which contains business logic related to password handling and strength evaluation.
 
----
+2. **Use Cases Layer**:
+   - Includes the `PasswordGenerator` class, which coordinates the password generation process.
 
-## License
-This project is open-source and available under the [MIT License](https://opensource.org/licenses/MIT).
+3. **Interface Adapters Layer**:
+   - Provides the **CLI (Command Line Interface)** that enables interaction with the user.
 
----
+The following diagram represents the basic layer structure:
 
-## Contributions
-Contributions are welcome! Please submit issues or pull requests to enhance the functionality of the tool.
+```
+password-generator/
+├── entities/
+│   └── password.py            # Password logic and strength evaluation
+├── use_cases/
+│   └── password_generator.py  # Password generation logic
+├── interface_adapters/
+│   └── cli.py                 # Command-line interface for interaction
+├── run.py                     # Entry point for the CLI app
+└── README.md                  # This file
+```
 
----
 
-## Acknowledgments
-This project is inspired by the need for secure password practices and the importance of raising awareness about password vulnerabilities.
+
+Feel free to open issues, contribute, or make pull requests for improvements.
 
