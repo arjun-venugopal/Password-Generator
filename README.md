@@ -1,6 +1,3 @@
-Here is the **README.md** file tailored for the password generator and strength checker code you provided:
-
----
 
 # Password Generator & Strength Checker
 
